@@ -7,7 +7,7 @@ gem 'rails', '3.2.15'
 
 gem 'sqlite3'
 
-gem 'therubyracer'
+#gem 'therubyracer'
 gem 'execjs'
 
 gem 'gravatar_image_tag'
@@ -19,6 +19,7 @@ end
 
 group :test do
 	gem 'rspec'
+	gem 'rspec-core', '2.14.8'
 	gem 'webrat'
 	gem 'spork'
 	gem 'factory_girl_rails', :require => false
