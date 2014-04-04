@@ -10,6 +10,8 @@ gem 'sqlite3'
 gem 'therubyracer'
 gem 'execjs'
 
+gem 'gravatar_image_tag'
+
 group :development do
 	gem 'rspec-rails'
 	#gem 'annotate-models'
@@ -19,6 +21,7 @@ group :test do
 	gem 'rspec'
 	gem 'webrat'
 	gem 'spork'
+	gem 'factory_girl_rails', :require => false
 end
 
 # Gems used only for assets and not required
