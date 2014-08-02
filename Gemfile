@@ -6,15 +6,19 @@ gem 'rails', '3.2.15'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
+#gem 'pg'
 
-#gem 'therubyracer'
+
+gem 'therubyracer'
 gem 'execjs'
 
 gem 'gravatar_image_tag'
+gem 'will_paginate'
 
 group :development do
 	gem 'rspec-rails'
-	#gem 'annotate-models'
+	gem 'annotate'
+	gem 'faker', '0.3.1'
 end
 
 group :test do
