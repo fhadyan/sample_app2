@@ -43,7 +43,7 @@ describe UsersController do
         end
       end
 
-      it "should paginate users" dp
+      it "should paginate users" do
         get :index
         response.should have_selector("div.pagination")
         response.should have_selector("span.disabled", :content => "Previous")
@@ -61,7 +61,7 @@ describe UsersController do
       @user = Factory(:user)
     end
 
-     it "should be successful" do
+    it "should be successful" do
       get :show, :id => @user
       respponse.should be_success
     end
@@ -84,6 +84,14 @@ describe UsersController do
     it "should have a profile image" do
       get :show, :id => @user
       response.should have_selector("h1>img", :class => "gravatar")
+    end
+
+    it "should show the user's micropost" do
+      mp1 = Factory(:micropost, :user => @user, :content => "foo bar")
+      mp2 = Factory(:micropost, :user => @user, :content => "bar foo")
+      get :show, :id => @user
+      response.should have_selector("span.content", :content => mp1.content)
+      response.should have_selector("span.content", :content => mp2.content)
     end
   end
 
@@ -209,7 +217,7 @@ describe UsersController do
       it "should change the user'r attributes" do
         put :update, :id => @user, :user => @attr
         @user.reload
-         @user.name.should == @attr[:name]
+        @user.name.should == @attr[:name]
         @user.email.should == @attr[:email]
       end
 
@@ -300,4 +308,5 @@ describe UsersController do
       end
     end
   end
+end
 end
