@@ -14,11 +14,12 @@ gem 'execjs'
 
 gem 'gravatar_image_tag'
 gem 'will_paginate'
+gem 'faker', '0.3.1'
 
 group :development do
 	gem 'rspec-rails'
 	gem 'annotate'
-	gem 'faker', '0.3.1'
+	
 end
 
 group :test do
