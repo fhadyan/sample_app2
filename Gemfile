@@ -14,7 +14,7 @@ gem 'execjs'
 
 gem 'gravatar_image_tag'
 gem 'will_paginate'
-gem 'faker', '0.3.1'
+gem 'faker', '0.3.1', :require => false
 
 group :development do
 	gem 'rspec-rails'
