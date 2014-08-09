@@ -5,7 +5,7 @@ gem 'rails', '3.2.15'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+#gem 'sqlite3'
 #gem 'pg'
 
 
@@ -20,6 +20,7 @@ group :development do
 	gem 'rspec-rails'
 	gem 'annotate'
 	gem 'faker', '0.3.1'
+	gem 'sqlite3'
 end
 
 group :test do
@@ -28,6 +29,12 @@ group :test do
 	gem 'webrat'
 	gem 'spork'
 	gem 'factory_girl_rails', '1.0'
+	gem 'sqlite3'
+end
+
+group :production do
+	gem 'pg'
+	gem 'rails_12factor'
 end
 
 # Gems used only for assets and not required
