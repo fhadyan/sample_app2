@@ -177,9 +177,73 @@ describe User do
       end
 
       it "should not inclue other user feed" do
-        mp3 = Factory(:micropost, :user => Factory(:user, :email => Factory.next(:email)))
+        mp3 = Factory(:micropost, :user => Factory(:user, :email => "aaaaaa@aaa.com"))
         @user.feed.include?(mp3).should be_false
       end
+
+      it "should include post from followed user" do
+        followed = Factory(:user, :email => Factory.next(:email))
+        mp3 = Factor(:micropost, :user => followed)
+        @user.follow!(followed)
+        @user.feed.should include(mp3)
+      end
+    end
+  end
+
+  describe "relationship" do
+
+    before(:each) do
+      @user = User.create!(@attr)
+      @followed = Factory(:user)
+    end
+
+    it "should have relationship method" do
+      @user.should respond_to(:relationships)
+    end
+
+    it "should have following method" do
+      @user.should respond_to(:following)
+    end
+
+    it "should have following? method" do
+      @user.should respond_to(:following?)
+    end
+
+    it "should have follow method" do
+      @user.should respond_to(:follow!)
+    end
+
+    it "should follow another user" do
+      @user.follow!(@followed)
+      @user.should be_following(@followed)
+    end
+
+    it "should include the followed user to following array" do
+      @user.follow!(@followed)  
+      @user.following.should include(@followed)
+    end
+
+    it "should have unfollow! method" do
+      @user.should respond_to(:unfollow!)
+    end
+
+    it "should unfollow a user" do
+      @user.follow!(@followed)
+      @user.unfollow!(@followed)
+      @user.should_not be_following(@followed)
+    end
+
+    it "should have reverse_relationship method" do
+      @user.should respond_to(:reverse_relationships)
+    end
+
+    it "should have follwers method" do
+      @user.should respond_to(:followers)
+    end
+
+    it "should include followers in the followers array" do
+      @user.follow!(@followed)
+      @followed.followers.should include(@user)
     end
   end
 end
